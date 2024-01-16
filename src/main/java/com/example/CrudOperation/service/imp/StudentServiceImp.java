@@ -32,12 +32,12 @@ public class StudentServiceImp  implements StudentService {
     }
 
     @Override
-    public StudentDto updateStudent(StudentDto studentDto, Long id) {
-        studentDto.setId(id);
+    public StudentDto updateStudent(StudentDto studentDto) {
        Student student = modelMapper.map(studentDto ,Student.class);
        studentRepo.save(student);
        return studentDto;
     }
+
 
     @Override
     public List<Student> getAllStuden() {
