@@ -50,5 +50,11 @@ public class MyController {
     return new ResponseEntity<>(stringMap,HttpStatus.OK);
     }
 
-
+     @GetMapping("/read/{id}")
+     public ResponseEntity<?> read(@PathVariable("id") Long id) {
+        studentService.read();
+        Map<String, String> map = new HashMap<>();
+        map.put("Message","Read Only The Student Details");
+         return new ResponseEntity<>(map,HttpStatus.OK);
+     }
 }

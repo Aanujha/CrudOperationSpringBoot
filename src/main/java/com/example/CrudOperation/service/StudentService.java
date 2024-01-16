@@ -15,5 +15,7 @@ public interface StudentService {
 
    List<Student> getAllStuden();
 
+   List<Student>read();
+
 
 }
