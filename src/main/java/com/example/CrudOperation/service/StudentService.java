@@ -7,15 +7,15 @@ import java.util.List;
 
 public interface StudentService {
 
-   StudentDto CreateStudent(StudentDto studentDto);
+    StudentDto CreateStudent(StudentDto studentDto);
 
-   void deleteStudent(Long id);
+    void deleteStudent(Long id);
 
-   StudentDto updateStudent(StudentDto studentDto);
+    StudentDto updateStudent(StudentDto studentDto, Long id);
 
-   List<Student> getAllStuden();
+    List<Student> getAllStuden();
 
-   List<Student>read();
+    List<Student> read();
 
 
 }

@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class StudentDto {
-   // @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
 
     private String name;

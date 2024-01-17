@@ -14,47 +14,47 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
- @RestController
- @RequestMapping("/student")
+@RestController
+@RequestMapping("/student")
 public class MyController {
 
     @Autowired
     private StudentService studentService;
 
     @PostMapping("/create")
-    public ResponseEntity<?>CreateStudent(@RequestBody StudentDto studentDto){
+    public ResponseEntity<?> CreateStudent(@RequestBody StudentDto studentDto) {
         StudentDto studentDto1 = studentService.CreateStudent(studentDto);
         return new ResponseEntity<>(studentDto1, HttpStatus.OK);
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<?>getAllStudent(){
+    public ResponseEntity<?> getAllStudent() {
         List<Student> studentList = studentService.getAllStuden();
-        return new ResponseEntity<>(studentList,HttpStatus.OK);
+        return new ResponseEntity<>(studentList, HttpStatus.OK);
     }
 
     @DeleteMapping("delet/{id}")
-    public ResponseEntity<?>deleteStudent(@PathVariable("id")Long id ){
+    public ResponseEntity<?> deleteStudent(@PathVariable("id") Long id) {
         studentService.deleteStudent(id);
-        Map<String ,String> stringMap = new HashMap<>();
-        stringMap.put( "Message", "Student Delete Successfully");
-        return new ResponseEntity<>(stringMap ,HttpStatus.OK);
+        Map<String, String> stringMap = new HashMap<>();
+        stringMap.put("Message", "Student Delete Successfully");
+        return new ResponseEntity<>(stringMap, HttpStatus.OK);
 
     }
 
-    @PutMapping("update")
-    public ResponseEntity<?>updateStudent(@RequestBody StudentDto studentDto){
-    studentService.updateStudent(studentDto);
-    Map<String, String> stringMap = new HashMap<>();
-    stringMap.put("Message","Student Update Successful");
-    return new ResponseEntity<>(stringMap,HttpStatus.OK);
+    @PutMapping("update/{id}")
+    public ResponseEntity<?> updateStudent(@RequestBody StudentDto studentDto, @PathVariable("id") Long id) {
+        studentService.updateStudent(studentDto, id);
+        Map<String, String> stringMap = new HashMap<>();
+        stringMap.put("Message", "Student Update Successful");
+        return new ResponseEntity<>(stringMap, HttpStatus.OK);
     }
 
-     @GetMapping("/read/{id}")
-     public ResponseEntity<?> read(@PathVariable("id") Long id) {
+    @GetMapping("/read/{id}")
+    public ResponseEntity<?> read(@PathVariable("id") Long id) {
         studentService.read();
         Map<String, String> map = new HashMap<>();
-        map.put("Message","Read Only The Student Details");
-         return new ResponseEntity<>(map,HttpStatus.OK);
-     }
+        map.put("Message", "Read Only The Student Details");
+        return new ResponseEntity<>(map, HttpStatus.OK);
+    }
 }

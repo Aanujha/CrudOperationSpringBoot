@@ -9,9 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class StudentServiceImp  implements StudentService {
+public class StudentServiceImp implements StudentService {
 
     @Autowired
     private StudentRepo studentRepo;
@@ -21,27 +22,28 @@ public class StudentServiceImp  implements StudentService {
 
     @Override
     public StudentDto CreateStudent(StudentDto studentDto) {
-       Student student =  modelMapper.map(studentDto ,Student.class);
-       studentRepo.save(student);
+        Student student = modelMapper.map(studentDto, Student.class);
+        studentRepo.save(student);
         return studentDto;
     }
 
     @Override
     public void deleteStudent(Long id) {
-    studentRepo.deleteById(id);
+        studentRepo.deleteById(id);
     }
 
     @Override
-    public StudentDto updateStudent(StudentDto studentDto) {
-       Student student = modelMapper.map(studentDto ,Student.class);
-       studentRepo.save(student);
-       return studentDto;
+    public StudentDto updateStudent(StudentDto studentDto, Long id) {
+        Optional<Student> studentList = studentRepo.findById(id);
+        Student student = modelMapper.map(studentDto,Student.class);
+        studentRepo.save(student);
+        return studentDto;
     }
 
 
     @Override
     public List<Student> getAllStuden() {
-      return studentRepo.findAll();
+        return studentRepo.findAll();
 
     }
 
